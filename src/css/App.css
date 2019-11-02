@@ -1,0 +1,18 @@
+body{
+    background-color: #e9ebee !important;
+}
+
+.main-page{
+    background-color: white;
+    border: 1px solid #dddfe2;
+    padding: 1em 0 1em 0;
+    margin-top: 1em 0 1em 0;
+}
+
+.navbar-expand .navbar-nav .nav-link{
+    padding: 0 !important;
+}
+
+.navbar-btn{
+    height: 3em;
+}
