@@ -6,12 +6,14 @@ module.exports = function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
     let entGen = azure.TableUtilities.entityGenerator;
+    let timestamp = entGen.DateTime(new Date(Date.UTC(2011, 10, 25)))
+    let dateId = new Date().getTime();
 
     if (req.body.username ) {
         let entity = {
             PartitionKey: entGen.String('part1'),
-            RowKey: entGen.String(`${req.body.username}-${new Date().getTime()}`),
-            Timestamp: entGen.DateTime(new Date(Date.UTC(2011, 10, 25))),
+            RowKey: entGen.String(`${req.body.username}-${dateId}`),
+            Timestamp: timestamp,
             user: entGen.String(req.body.username),
             tweet: entGen.String(req.body.tweet)
         };
@@ -33,7 +35,8 @@ module.exports = function (context, req) {
                 body: {
                     username: req.body.username,
                     tweet: req.body.tweet,
-
+                    timestamp: timestamp._,
+                    dateId: dateId
                 },
                 headers: {
                     'Content-Type': 'application/json'

@@ -19,7 +19,10 @@ import localStorage from 'local-storage';
      }
 
     handleLogin(){
-        fetch("http://localhost:7071/api/login", {
+        let localLogin = "http://localhost:7071/api/login";
+        let prodLogin = "https://minitwitter.azurewebsites.net/api/login?code=QdF1TRaSscATTZMtoDxGUK3v/atd047aVyFmwd42fuW8puLZhPIoJg==";
+
+        fetch(localLogin, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {

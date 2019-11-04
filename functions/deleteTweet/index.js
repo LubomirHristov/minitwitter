@@ -5,10 +5,17 @@ const tableService = azure.createTableService(connectionString);
 module.exports = function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
+    let entGen = azure.TableUtilities.entityGenerator;
+    let timestamp = entGen.DateTime(new Date(Date.UTC(2011, 10, 25)))
+
     if (req.body.username) {
-        const queryData = () => new Promise((resolve, reject) => {
-            let query = new azure.TableQuery();
-            tableService.queryEntities('Tweets', query, null, function(error, result, response) {
+        let entity = {
+            PartitionKey: entGen.String('part1'),
+            RowKey: entGen.String(`${req.body.username}-${req.body.dateId}`)
+        };
+
+        const insertData = () => new Promise((resolve, reject) => {
+            tableService.deleteEntity('Tweets', entity, function(error, result, response) {
                 if (error) {
                     return reject(error)
                 }
@@ -16,27 +23,16 @@ module.exports = function (context, req) {
               });
         })
 
-        queryData()
+        insertData()
         .then(result => {
-            let unstructuredTweets = []
-            result.entries.map(entity => {
-                let rowkey = entity.RowKey._;
-                let arr = rowkey.split('-')
-
-                unstructuredTweets.push({
-                    user: entity.user._,
-                    tweet: entity.tweet._,
-                    timestamp: entity.Timestamp._,
-                    dateId: arr[arr.length -1]
-                })
-            });
-            let structuredTweets = unstructuredTweets.filter(entity => req.body.followed.includes(entity.user) || entity.user === req.body.username);
+            console.log("================================================")
             context.res = {
                 // status: 200, /* Defaults to 200 */
                 status: 200,
                 body: {
-                    tweets: structuredTweets.reverse()
-
+                    username: req.body.username,
+                    tweet: req.body.tweet,
+                    timestamp: timestamp
                 },
                 headers: {
                     'Content-Type': 'application/json'
@@ -45,6 +41,7 @@ module.exports = function (context, req) {
             context.done();
         })
         .catch(error => {
+            console.log(error)
             context.res = {
                 // status: 200, /* Defaults to 200 */
                 status: 200,

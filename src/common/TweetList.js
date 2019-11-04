@@ -8,7 +8,7 @@ class TweetList extends React.Component{
 
     render(){
         return(
-            this.props.tweets.map((tweet, index) => <Tweet key={index} tweet={tweet}/>)
+            this.props.tweets.map((tweet, index) => <Tweet key={index} tweet={tweet} update={this.props.update}/>)
         )
     }
 }

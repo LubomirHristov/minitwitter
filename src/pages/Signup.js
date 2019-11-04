@@ -25,7 +25,10 @@ import localStorage from 'local-storage';
          console.log("Password: " + this.password.value);
          
          if(this.password.value === this.confirmPassword.value){
-            fetch("http://localhost:7071/api/register", {
+             let localRegister = "http://localhost:7071/api/register";
+             let prodRegister = "https://minitwitter.azurewebsites.net/api/Register?code=sDUaRpmxcPmoCvsBJG9DR3zXI02KGlOZc3/Fg0EtY93oAezXXse2aA==";
+
+            fetch(localRegister, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {

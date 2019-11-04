@@ -24,10 +24,30 @@ module.exports = function (context, req) {
 
         deleteData()
         .then(result => {
-            console.log(result)
+            context.res = {
+                // status: 200, /* Defaults to 200 */
+                status: 200,
+                body: {
+                    username: req.body.username
+                },
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+            context.done();
         })
         .catch(error => {
-            console.log(error)
+            context.res = {
+                // status: 200, /* Defaults to 200 */
+                status: 200,
+                body: {
+                    error: "Some error occurred."
+                },
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+            context.done();
         })
     }
     else {

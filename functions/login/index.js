@@ -17,7 +17,7 @@ module.exports = function (context, req) {
 
         retrieveData()
         .then(result => {
-            if(req.body.password === result.password._){
+            if(req.body.password === result.password._ && result.RowKey._){
                 context.res = {
                     status: 200,
                     body: {

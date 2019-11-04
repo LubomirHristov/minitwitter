@@ -11,7 +11,9 @@ class User extends React.Component{
     }
 
     followUser(){
-        fetch("http://localhost:7071/api/followUser", {
+        let localUrl = "http://localhost:7071/api/followUser";
+        let productionUrl = "https://minitwitter.azurewebsites.net/api/followUser?code=GGzBbcL0R1MP7nyXXJngdiCKHarG5GlVK3BxeVSNaT5fERxolEcvzw==";
+        fetch(localUrl, {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -21,12 +23,13 @@ class User extends React.Component{
                 username: localStorage.get('username'),
                 followed: this.props.user
             })
-        })
-        this.props.update();
+        }).then(res => this.props.update())
     }
 
     unfollowUser(){
-        fetch("http://localhost:7071/api/unfollowUser", {
+        let localUrl = "http://localhost:7071/api/unfollowUser";
+        let productionUrl = "https://minitwitter.azurewebsites.net/api/unfollowUser?code=hApHatIY7wdYyMka3xLBDX1JvTbGbQAKvvOoz8Nssdj14HaIIdrheg==";
+        fetch(localUrl, {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -36,8 +39,7 @@ class User extends React.Component{
                 username: localStorage.get('username'),
                 unfollowed: this.props.user
             })
-        })
-        this.props.update();
+        }).then(res => this.props.update())
     }
 
     render(){

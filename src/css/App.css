@@ -16,3 +16,18 @@ body{
 .navbar-btn{
     height: 3em;
 }
+
+.tweet-operation:hover, .user-info:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.loading-spinner{
+    height: 15em !important;
+    width: 15em !important;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -7.5em;
+    margin-left: -7.5em;
+}
