@@ -20,6 +20,8 @@ class Tweet extends React.Component{
 
     handleEditTweet(){
         let localEditTweet = "http://localhost:7071/api/editTweet";
+        let prodEditTweet = "https://minitwitter.azurewebsites.net/api/editTweet?code=F0XG6LvNFX7ypWqB3szD1n0XOUtDqyHaTGLoDvYXNlyXK1agytU0dQ==";
+
         let tweet = this.props.tweet.tweet;
 
         if(this.tweet !== null){
@@ -28,7 +30,7 @@ class Tweet extends React.Component{
 
         console.log(tweet)
 
-        fetch(localEditTweet, {
+        fetch(prodEditTweet, {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -45,16 +47,15 @@ class Tweet extends React.Component{
 
     handleDeleteTweet(){
         let localDeleteTweet = "http://localhost:7071/api/deleteTweet";
+        let prodDeleteTweet = "https://minitwitter.azurewebsites.net/api/deleteTweet?code=FsR8tBdUN5z0YbkTiJ1MpuV9r1v3QL1T/z4JcovDub3ciOSTXWTwJA==";
 
         let tweet = this.props.tweet.tweet;
 
         if(this.tweet !== null){
             tweet = this.tweet.value;
         }
-
-        console.log(tweet)
         
-        fetch(localDeleteTweet, {
+        fetch(prodDeleteTweet, {
             method: 'POST',
             mode: 'cors',
             headers: {

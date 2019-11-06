@@ -22,7 +22,7 @@ import localStorage from 'local-storage';
         let localLogin = "http://localhost:7071/api/login";
         let prodLogin = "https://minitwitter.azurewebsites.net/api/login?code=QdF1TRaSscATTZMtoDxGUK3v/atd047aVyFmwd42fuW8puLZhPIoJg==";
 
-        fetch(localLogin, {
+        fetch(prodLogin, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
@@ -55,7 +55,7 @@ import localStorage from 'local-storage';
                 <h1 style={{fontSize: '5em', marginBottom: '1em', color: '#006bde'}}>
                     Mini Twitter
                 </h1>
-                <Form>
+                <Form style={{width: '50%'}}>
                     <Form.Group controlId="formBasicUsername">
                         <Form.Label>Username</Form.Label>
                         <Form.Control placeholder="Enter your username" ref= {(username) => this.username = username}/>

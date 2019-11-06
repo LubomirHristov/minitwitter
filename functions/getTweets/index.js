@@ -35,7 +35,7 @@ module.exports = function (context, req) {
                 // status: 200, /* Defaults to 200 */
                 status: 200,
                 body: {
-                    tweets: structuredTweets.reverse()
+                    tweets: structuredTweets
 
                 },
                 headers: {

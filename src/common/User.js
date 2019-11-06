@@ -11,9 +11,10 @@ class User extends React.Component{
     }
 
     followUser(){
-        let localUrl = "http://localhost:7071/api/followUser";
-        let productionUrl = "https://minitwitter.azurewebsites.net/api/followUser?code=GGzBbcL0R1MP7nyXXJngdiCKHarG5GlVK3BxeVSNaT5fERxolEcvzw==";
-        fetch(localUrl, {
+        let localFollowUser = "http://localhost:7071/api/followUser";
+        let prodFollowUser = "https://minitwitter.azurewebsites.net/api/followUser?code=GGzBbcL0R1MP7nyXXJngdiCKHarG5GlVK3BxeVSNaT5fERxolEcvzw==";
+
+        fetch(prodFollowUser, {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -27,9 +28,10 @@ class User extends React.Component{
     }
 
     unfollowUser(){
-        let localUrl = "http://localhost:7071/api/unfollowUser";
-        let productionUrl = "https://minitwitter.azurewebsites.net/api/unfollowUser?code=hApHatIY7wdYyMka3xLBDX1JvTbGbQAKvvOoz8Nssdj14HaIIdrheg==";
-        fetch(localUrl, {
+        let localUnfollowUser = "http://localhost:7071/api/unfollowUser";
+        let prodUnfollowUser = "https://minitwitter.azurewebsites.net/api/unfollowUser?code=hApHatIY7wdYyMka3xLBDX1JvTbGbQAKvvOoz8Nssdj14HaIIdrheg==";
+
+        fetch(prodUnfollowUser, {
             method: 'POST',
             mode: 'cors',
             headers: {

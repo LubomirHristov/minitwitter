@@ -47,8 +47,8 @@ class MainPage extends React.Component{
         let prodGetTweets = "https://minitwitter.azurewebsites.net/api/getTweets?code=Fj8kGdQRi1Fu80S0heaV3zbDy7DTPWbAo4uekp1hsp7fHVjvalqNyQ==";
         
         Promise.all([
-            fetch(localGetUsers),
-            fetch(localGetFollowing, {
+            fetch(prodGetUsers),
+            fetch(prodGetFollowing, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
@@ -58,7 +58,7 @@ class MainPage extends React.Component{
                     username: localStorage.get('username')
                 })
             }),
-            fetch(localGetFollowers, {
+            fetch(prodGetFollowers, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
@@ -71,7 +71,7 @@ class MainPage extends React.Component{
         ])
         .then(([resUsers, resFollowing, resFollowers]) => Promise.all([resUsers.json(), resFollowing.json(), resFollowers.json()]))
         .then(([users, following, followers]) => {
-            fetch(localGetTweets, {
+            fetch(prodGetTweets, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
@@ -99,7 +99,7 @@ class MainPage extends React.Component{
         let localPostTweet = "http://localhost:7071/api/postTweet";
         let prodPostTweet = "https://minitwitter.azurewebsites.net/api/postTweet?code=UJ6qRK7Oc92L65vhn/qtnNNXF461oG02s5X2KIB04GTyWJNEsbF10w==";
 
-        fetch(localPostTweet, {
+        fetch(prodPostTweet, {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -112,8 +112,6 @@ class MainPage extends React.Component{
         })
         .then(res => res.json())
         .then(json => {
-            console.log(json.timestamp)
-            console.log(json.dateId)
             let newTweet = {
                 user: json.username,
                 tweet: json.tweet,
