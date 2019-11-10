@@ -21,9 +21,6 @@ import localStorage from 'local-storage';
      }
 
      handleSubmit() {
-         console.log("Username: " + this.username.value);
-         console.log("Password: " + this.password.value);
-         
          if(this.password.value === this.confirmPassword.value){
              let localRegister = "http://localhost:7071/api/register";
              let prodRegister = "https://minitwitter.azurewebsites.net/api/Register?code=sDUaRpmxcPmoCvsBJG9DR3zXI02KGlOZc3/Fg0EtY93oAezXXse2aA==";
@@ -42,14 +39,14 @@ import localStorage from 'local-storage';
             .then(res => res.json())
             .then(json => {
                 if(json.error === undefined){
-                    this.routeChange();
                     localStorage.set('username', json.username)
+                    this.routeChange();
                 }else{
                     this.setState({shouldShowUsernameError: true})
                 }
             })
         }else{
-            this.setState({shouldShowError: true})
+            this.setState({shouldShowPasswordError: true})
         }
      }
 

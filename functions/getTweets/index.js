@@ -31,6 +31,8 @@ module.exports = function (context, req) {
                 })
             });
             let structuredTweets = unstructuredTweets.filter(entity => req.body.followed.includes(entity.user) || entity.user === req.body.username);
+            structuredTweets.sort((a,b) => Date.parse(b.timestamp) - Date.parse(a.timestamp));
+
             context.res = {
                 // status: 200, /* Defaults to 200 */
                 status: 200,
@@ -61,7 +63,9 @@ module.exports = function (context, req) {
     else {
         context.res = {
             status: 400,
-            body: {error: "Some error occurred."},
+            body: {
+                error: "Some error occurred."
+            },
             headers: {
                 'Content-Type': 'application/json'
             }

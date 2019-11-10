@@ -55,7 +55,9 @@ module.exports = function (context, req) {
     else {
         context.res = {
             status: 400,
-            body: {error: "Some error occurred."},
+            body: {
+                error: "Some error occurred."
+            },
             headers: {
                 'Content-Type': 'application/json'
             }

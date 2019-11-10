@@ -28,8 +28,6 @@ class Tweet extends React.Component{
             tweet = this.tweet.value;
         }
 
-        console.log(tweet)
-
         fetch(prodEditTweet, {
             method: 'POST',
             mode: 'cors',

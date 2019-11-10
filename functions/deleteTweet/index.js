@@ -25,7 +25,6 @@ module.exports = function (context, req) {
 
         insertData()
         .then(result => {
-            console.log("================================================")
             context.res = {
                 // status: 200, /* Defaults to 200 */
                 status: 200,
@@ -41,12 +40,11 @@ module.exports = function (context, req) {
             context.done();
         })
         .catch(error => {
-            console.log(error)
             context.res = {
                 // status: 200, /* Defaults to 200 */
                 status: 200,
                 body: {
-                    error: "Some error occurred."
+                    error: error
                 },
                 headers: {
                     'Content-Type': 'application/json'
@@ -58,7 +56,9 @@ module.exports = function (context, req) {
     else {
         context.res = {
             status: 400,
-            body: {error: "Some error occurred."},
+            body: {
+                error: "Some error occurred."
+            },
             headers: {
                 'Content-Type': 'application/json'
             }

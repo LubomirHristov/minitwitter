@@ -30,6 +30,15 @@ module.exports = function (context, req) {
         context.done();
     })
     .catch(error => {
-        console.log(error)
+        context.res = {
+            status: 400,
+            body: {
+                error: "Some error occurred."
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        context.done();
     })
 };

@@ -17,7 +17,6 @@ module.exports = function (context, req) {
 
     retrieveData()
     .then(result => {
-        console.log(result)
         let users = [];
         result.entries.map(entity => users.push(entity.user._));
         context.res = {
@@ -31,6 +30,15 @@ module.exports = function (context, req) {
         context.done();
     })
     .catch(error => {
-        console.log(error)
+        context.res = {
+            status: 400,
+            body: {
+                error: "Some error occurred."
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        context.done();
     })
 };
